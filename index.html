@@ -3,9 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>hello-vue</title>
+    <link rel="stylesheet" href="./src/main.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h3>{{ city }}</h3>
+      <h3>Current Weather: {{ temp }}</h3>
+      <p>Powered by
+        <a href="http://openweathermap.org" target="_blank">Open Weather Map</a>
+      </p>
+    </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>
