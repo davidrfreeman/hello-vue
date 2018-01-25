@@ -8,10 +8,8 @@
   <body>
     <div id="app">
       <h3>{{ city }}</h3>
-      <h3>Current Weather: {{ temp }}</h3>
-      <p>Powered by
-        <a href="http://openweathermap.org" target="_blank">Open Weather Map</a>
-      </p>
+      <h3>{{ temp | properTemp(this.tempType) }}</h3>
+      <p>Powered by <a href="http://openweathermap.org" target="_blank"> Open Weather Map</a></p>
     </div>
     <script src="/dist/build.js"></script>
   </body>
