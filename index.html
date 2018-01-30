@@ -7,9 +7,18 @@
   </head>
   <body>
     <div id="app">
-      <h3>{{ city }}</h3>
-      <h3>{{ temp | properTemp(this.tempType) }}</h3>
-      <p>Powered by <a href="http://openweathermap.org" target="_blank"> Open Weather Map</a></p>
+      <button @click="getLatAndLong">Get Local Weather</button>
+      <div id="weatherOutput" v-if="seen">
+        <h3>{{ city }}: {{ description | capitalize }}</h3>
+        <h3>Current Temp: {{ temp | properTemp(this.tempType) }}</h3>
+        <h4 id="high">Today's High: {{ max | properTemp(this.tempType) }} |</h4>
+        <h4 id="low">Today's Low: {{ min | properTemp(this.tempType) }}</h4>
+      </div>
+    
+      <p>Powered by
+        <a href="http://openweathermap.org" target="_blank">Open Weather Map</a> and
+        <a href="https://vuejs.org/" target="_blank"> Vue.js</a>
+      </p>
     </div>
     <script src="/dist/build.js"></script>
   </body>
