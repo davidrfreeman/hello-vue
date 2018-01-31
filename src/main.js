@@ -8,15 +8,14 @@ var vm = new Vue({
     lat: null,
     lon: null,
     weatherData: null,
-    description: ' Weather Decription',
+    description: 'Weather Decription',
     high: null,
     low: null,
     temp: null,
     tempType: 'FAHRENHEIT',
     // 	weatherUrl is prepended with url to avoid CORS error
-    weatherUrl: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?',
+    weatherUrl: 'http://api.openweathermap.org/data/2.5/weather?',
     apiKey: '5ff51663eb541e74296530b17a1eaf5e',
-    seen: false
   },
   filters: {
     properTemp: function (temp, tempFormat) {
@@ -74,14 +73,21 @@ var vm = new Vue({
       axios.get(`${this.weatherUrl}appid=${this.apiKey}&lat=${this.lat}&lon=${this.lon}`).then((res) => {
         this.weatherData = res.data
         if (option) { this.city = this.weatherData.name }
-        this.temp = this.weatherData.main.temp
-        this.description = this.weatherData.weather[0].description
-        this.max = this.weatherData.main.temp_max
-        this.min = this.weatherData.main.temp_min
-        this.seen = true
+
       }, (error) => {
         console.log(error.message)
       })
     }
+  },
+  watch: {
+    weatherData: function () {
+      this.temp = this.weatherData.main.temp
+      this.description = this.weatherData.weather[0].description
+      this.high = this.weatherData.main.temp_max
+      this.low = this.weatherData.main.temp_min
+    }
+  },
+  mounted: function () {
+    this.getLatAndLong()
   }
 })

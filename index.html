@@ -7,12 +7,11 @@
   </head>
   <body>
     <div id="app">
-      <button @click="getLatAndLong">Get Local Weather</button>
-      <div id="weatherOutput" v-if="seen">
+      <div id="weatherOutput">
         <h3>{{ city }}: {{ description | capitalize }}</h3>
         <h3>Current Temp: {{ temp | properTemp(this.tempType) }}</h3>
-        <h4 id="high">Today's High: {{ max | properTemp(this.tempType) }} |</h4>
-        <h4 id="low">Today's Low: {{ min | properTemp(this.tempType) }}</h4>
+        <h4 id="high">Today's High: {{ high | properTemp(this.tempType) }} |</h4>
+        <h4 id="low">Today's Low: {{ low | properTemp(this.tempType) }}</h4>
       </div>
     
       <p>Powered by
